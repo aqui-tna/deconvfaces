@@ -1,25 +1,11 @@
 {
-  "name": "aqui-tna/deconvfaces",
+  "name": "somewacko/deconvfaces",
   "url": "https://github.com/aqui-tna/deconvfaces",
   "python_version": "3",
   "requirements": {
     "req_file": "requirements.txt",
     "pip": [
       "torch",
-      "dask",
-      "decorator",
-      "h5py",
-      "Keras",
-      "networkx",
-      "numpy",
-      "olefile",
-      "Pillow",
-      "PyYAML",
-      "scikit-image",
-      "scipy",
-      "six",
-      "Theano",
-      "toolz",
       "tqdm"
     ],
     "others": [
@@ -36,8 +22,130 @@
         "steps": [
             "To train a new model"
         ],
-        "args_lib": "library used to parse arguments. Ex argparse or unknown",
-        "args": [],
+        "args_lib": "argparse",
+        "args": [
+            {
+                "names": [
+                    "--data"
+                ],
+                "input": true,
+                "dest": "data",
+                "ex_has_default": false,
+                "default": "type=str",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "---o"
+                ],
+                "input": true,
+                "dest": "-o",
+                "ex_has_default": false,
+                "default": "--output",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "---m"
+                ],
+                "input": true,
+                "dest": "-m",
+                "ex_has_default": false,
+                "default": "--model",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "---b"
+                ],
+                "input": true,
+                "dest": "-b",
+                "ex_has_default": false,
+                "default": "--batch-size",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "---e"
+                ],
+                "input": true,
+                "dest": "-e",
+                "ex_has_default": false,
+                "default": "--num-epochs",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "---opt"
+                ],
+                "input": true,
+                "dest": "-opt",
+                "ex_has_default": false,
+                "default": "--optimizer",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "---d"
+                ],
+                "input": true,
+                "dest": "-d",
+                "ex_has_default": false,
+                "default": "--deconv-layers",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "---k"
+                ],
+                "input": true,
+                "dest": "-k",
+                "ex_has_default": false,
+                "default": "--kernels-per-layer",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "---v"
+                ],
+                "input": true,
+                "dest": "-v",
+                "ex_has_default": false,
+                "default": "--visualize",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "----use-yalefaces"
+                ],
+                "input": true,
+                "dest": "--use-yalefaces",
+                "ex_has_default": false,
+                "default": "action=store_true",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "----use-jaffe"
+                ],
+                "input": true,
+                "dest": "--use-jaffe",
+                "ex_has_default": false,
+                "default": "action=store_true",
+                "type": "str",
+                "mandatory": false
+            }
+        ],
         "ins": [
             {
             "type": "dir or file",
@@ -59,12 +167,68 @@
         },
         {
           "cmd": "python3 faces.py generate -m path/to/model -o output/directory -f path/to/params.yaml",
-          "main": "python3 faces.py",
+          "main": "faces.py",
           "steps": [
-              "To train a new model"
+              "generate a model"
           ],
-          "args_lib": "library used to parse arguments. Ex argparse or unknown",
-          "args": [],
+          "args_lib": "argparse",
+          "args": [
+            {
+                "names": [
+                    "---m"
+                ],
+                "input": true,
+                "dest": "-m",
+                "ex_has_default": false,
+                "default": "--model",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "---o"
+                ],
+                "input": true,
+                "dest": "-o",
+                "ex_has_default": false,
+                "default": "--output",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "---f"
+                ],
+                "input": true,
+                "dest": "-f",
+                "ex_has_default": false,
+                "default": "--gen-file",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "---b"
+                ],
+                "input": true,
+                "dest": "-b",
+                "ex_has_default": false,
+                "default": "--batch_size",
+                "type": "str",
+                "mandatory": false
+            },
+            {
+                "names": [
+                    "---ext"
+                ],
+                "input": true,
+                "dest": "-ext",
+                "ex_has_default": false,
+                "default": "--extension",
+                "type": "str",
+                "mandatory": false
+            }
+        ],
           "ins": [
               {
               "type": "file",
