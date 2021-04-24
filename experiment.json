@@ -13,14 +13,14 @@
   },
   "to_run": {
       "decision": false,
-      "reason": "Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output"
+      "reason": "dataset not provided"
   },
   "entries": [
       {
         "cmd": "python3 faces.py train path/to/data",
-        "main": "python3 faces.py",
+        "main": "faces.py",
         "steps": [
-            "To train a new model"
+            "training"
         ],
         "args_lib": "argparse",
         "args": [
@@ -148,20 +148,20 @@
         ],
         "ins": [
             {
-            "type": "dir or file",
-            "location": "path to the location of the file or folder",
-            "artifact": "artifact type of the element: dataset,conf,metrics",
-            "ex_from": "Tells how the artifact was loaded to the project: either cmd (if loaded using arg from command line), manual (if hardcoded in the code), conf (from configuration file) or unknown",
-            "ex_in_repo": true
+            "type": "dir",
+            "location": "unknown",
+            "artifact": "dataset",
+            "ex_from": "cmd",
+            "ex_in_repo": false
             }
         ],
         "outs": [
             {
-                "type": "dir or file",
-                "location": "path to the location of the file or folder",
-                "artifact": "artifact type of the element: dataset,conf,metrics",
-                "ex_from": "Tells how the artifact name was procided either cmd (if loaded using arg from command line), manual (if hardcoded in the code), conf (from configuration file) or unknown",
-                "ex_in_repo": true
+                "type": "dir",
+                "location": "output",
+                "artifact": "model",
+                "ex_from": "cmd",
+                "ex_in_repo": false
             }
         ]
         },
@@ -169,7 +169,7 @@
           "cmd": "python3 faces.py generate -m path/to/model -o output/directory -f path/to/params.yaml",
           "main": "faces.py",
           "steps": [
-              "generate a model"
+              "execute"
           ],
           "args_lib": "argparse",
           "args": [
@@ -232,57 +232,46 @@
           "ins": [
               {
               "type": "file",
-              "location": "path/to/model",
+              "location": "unknown",
               "artifact": "model",
-              "ex_from": "params directory, which should give you a good idea of how to format these and what's available.",
-              "ex_in_repo": true
+              "ex_from": "cmd",
+              "ex_in_repo": false
               }
           ],
           "outs": [
               {
                   "type": "file",
-                  "location": "output/directory",
-                  "artifact": "params.yaml",
-                  "ex_from": "params directory, which should give you a good idea of how to format these and what's available.",
-                  "ex_in_repo": true
-              }
+                  "location": "unknown",
+                  "artifact": "conf",
+                  "ex_from": "cmd",
+                  "ex_in_repo": false
+              },
+              {
+                "type": "dir",
+                "location": "unknown",
+                "artifact": "dataset",
+                "ex_from": "cmd",
+                "ex_in_repo": false
+            }
           ]
           }
     ],
   "ex_metrics": {
-    "metrics_files": [
-        {
-            "file_name": "faces.py",
-            "metrics": ["cmd_fns","cmd_names","cmd_dict"]
-        }
-    ],
-    "prints": ["cmd_fns","cmd_names","cmd_dict"],
+    "metrics_files": [],
+    "prints": [],
     "plots": ["unknown"],
     "others": [
         {
-            "name": "method name",
+            "name": "saved to checkpoint",
             "in_repo": ["unknown"],
-            "metrics": ["unknown"]
+            "metrics": ["loss"]
         }
     ]
   },
   "ex_hyperparams": {
-    "from_cmd": ["List of metrics read from cmd line"],
-    "config_files": [
-        {
-            "name": "filename of the file where the hyperparameters are stored",
-            "in_repo": "true if the file is in the repo, false if not",
-            "hyperparams": ["single","random","drunk","interpolate"]
-        }
-    ],
-    "in_code": [
-      "List of hyperparams manually specified in code"
-    ],
-    "others": [
-        {
-            "name": ["unknown"],
-            "metrics": ["unknown"]
-        }
-    ]
+    "from_cmd": ["batch-size", "epochs", "kernel-per-layer"],
+    "config_files": [],
+    "in_code": [],
+    "others": []
   }
 }
