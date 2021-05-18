@@ -1,0 +1,27 @@
+stages:
+  step0_training:
+    cmd: python3 faces.py train path/to/data
+    params:
+    - data
+    - -o
+    - -m
+    - -b
+    - -e
+    - -opt
+    - -d
+    - -k
+    - -v
+    - --use-yalefaces
+    - --use-jaffe
+    deps:
+    - faces.py
+  step1_execute:
+    cmd: python3 faces.py generate -m path/to/model -o output/directory -f path/to/params.yaml
+    params:
+    - -m
+    - -o
+    - -f
+    - -b
+    - -ext
+    deps:
+    - faces.py
