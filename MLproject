@@ -1,0 +1,59 @@
+name: somewacko/deconvfaces
+conda_env: conda_deconvfaces.yaml
+entry_points:
+  step0_training:
+    parameters:
+      data:
+        type: str
+        default: type=str
+      -o:
+        type: str
+        default: --output
+      -m:
+        type: str
+        default: --model
+      -b:
+        type: str
+        default: --batch-size
+      -e:
+        type: str
+        default: --num-epochs
+      -opt:
+        type: str
+        default: --optimizer
+      -d:
+        type: str
+        default: --deconv-layers
+      -k:
+        type: str
+        default: --kernels-per-layer
+      -v:
+        type: str
+        default: --visualize
+      --use-yalefaces:
+        type: str
+        default: action=store_true
+      --use-jaffe:
+        type: str
+        default: action=store_true
+    command: python3 faces.py train path/to/data
+  step1_execute:
+    parameters:
+      -m:
+        type: str
+        default: --model
+      -o:
+        type: str
+        default: --output
+      -f:
+        type: str
+        default: --gen-file
+      -b:
+        type: str
+        default: --batch_size
+      -ext:
+        type: str
+        default: --extension
+    command: python3 faces.py generate -m path/to/model -o output/directory -f path/to/params.yaml
+  main:
+    command: python ex_mlflow_multistep_main.py
