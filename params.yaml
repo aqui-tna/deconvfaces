@@ -1,0 +1,18 @@
+step0_training:
+  data: type=str
+  -o: --output
+  -m: --model
+  -b: --batch-size
+  -e: --num-epochs
+  -opt: --optimizer
+  -d: --deconv-layers
+  -k: --kernels-per-layer
+  -v: --visualize
+  --use-yalefaces: action=store_true
+  --use-jaffe: action=store_true
+step1_execute:
+  -m: --model
+  -o: --output
+  -f: --gen-file
+  -b: --batch_size
+  -ext: --extension
